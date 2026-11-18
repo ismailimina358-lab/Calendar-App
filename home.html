@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>تقویم مینا</title>
+
+    <!-- اتصال فایل CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- محتوای اصلی برنامه -->
+    <main class="app">
+
+        <!-- عنوان-->
+        <header class="hero">
+
+            <div>
+                <span class="eyebrow">Calendar</span>
+
+                <h1>تقویم مینا</h1>
+
+                <p>
+                    تقویم هوشمند و شخصی شما
+                </p>
+            </div>
+
+            <!-- دکمه Dark Mode -->
+            <button id="themeBtn"
+                    class="icon-btn"
+                    type="button">
+                🌙
+            </button>
+
+        </header>
+
+
+        <!-- معرفی تقویم -->
+        <section class="intro card">
+
+            <div class="intro-icon">
+                📅
+            </div>
+
+            <div>
+                <h2>
+                    روزهایت را زیباتر برنامه‌ریزی کن
+                </h2>
+
+                <p>
+                    شمسی، قمری و میلادی؛ همراه با
+                    مناسبت‌ها و یادداشت‌های شخصی.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- ساعت و دکمه امروز -->
+        <section class="clock-card card">
+
+            <div>
+
+                <span class="muted">
+                    امروز
+                </span>
+
+                <strong id="liveClock">
+                    --:--:--
+                </strong>
+
+                <span id="todayText">
+                    در حال بارگذاری...
+                </span>
+
+            </div>
+
+            <button id="todayBtn"
+                    class="primary-btn"
+                    type="button">
+                امروز
+            </button>
+
+        </section>
+
+
+        <!-- بخش اصلی تقویم -->
+        <section class="calendar-card card">
+
+            <!-- عنوان ماه و دکمه‌های قبل و بعد -->
+            <div class="calendar-head">
+
+                <button id="prevBtn"
+                        class="nav-btn"
+                        type="button">
+                    ‹
+                </button>
+
+
+                <div class="month-title">
+
+                    <span id="monthName">
+                        ماه
+                    </span>
+
+                    <small id="yearName">
+                    </small>
+
+                </div>
+
+
+                <button id="nextBtn"
+                        class="nav-btn"
+                        type="button">
+                    ›
+                </button>
+
+            </div>
+
+
+            <!-- انتخاب نوع تقویم -->
+            <div class="calendar-tabs">
+
+                <button class="tab active"
+                        data-calendar="jalali"
+                        type="button">
+                    شمسی ☀️
+                </button>
+
+                <button class="tab"
+                        data-calendar="hijri"
+                        type="button">
+                    قمری 🌙
+                </button>
+
+                <button class="tab"
+                        data-calendar="gregorian"
+                        type="button">
+                    میلادی 🌎
+                </button>
+
+            </div>
+
+
+            <!-- نام روزهای هفته -->
+            <div id="weekdays"
+                 class="weekdays">
+            </div>
+
+
+            <!-- روزهای تقویم -->
+            <div id="calendarGrid"
+                 class="calendar-grid">
+            </div>
+
+        </section>
+
+
+        <!-- مناسبت‌ها -->
+        <section class="events card">
+
+            <div class="section-title">
+
+                <h2>
+                    مناسبت‌ها 
+                </h2>
+
+                <span id="eventCount">
+                    0
+                </span>
+
+            </div>
+
+
+            <div id="eventsList"
+                 class="empty-state">
+
+                برای این ماه مناسبتی ثبت نشده است.
+
+            </div>
+
+        </section>
+
+
+        <!-- یادداشت‌های کاربر -->
+        <section class="notes card">
+
+            <div class="section-title">
+
+                <h2>
+                    یادداشت‌های من 
+    
+                </h2>
+
+                <button id="openNoteBtn"
+                        class="secondary-btn"
+                        type="button">
+                    ＋ افزودن
+                </button>
+
+            </div>
+
+
+            <div id="notesList"
+                 class="notes-list">
+            </div>
+
+        </section>
+
+
+        <!-- فرم اضافه کردن مناسبت -->
+        <section id="notePanel"
+                 class="note-panel card hidden">
+
+            <div class="section-title">
+
+                <h2>
+                    افزودن مناسبت شخصی 
+                </h2>
+
+                <button id="closeNoteBtn"
+                        class="close-btn"
+                        type="button">
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- انتخاب تاریخ -->
+            <label>
+                تاریخ
+
+                <input id="noteDate"
+                       type="date">
+            </label>
+
+
+            <!-- عنوان -->
+            <label>
+                عنوان
+
+                <input id="noteTitle"
+                       type="text"
+                       placeholder="مثلاً تولد، امتحان، جلسه..."
+                       maxlength="80">
+            </label>
+
+
+            <!-- ساعت -->
+            <label>
+                ساعت
+
+                <input id="noteTime"
+                       type="time">
+            </label>
+
+
+            <!-- توضیحات -->
+            <label>
+                توضیحات
+
+                <textarea id="noteDescription"
+                          placeholder="توضیحات کوتاه..."
+                          maxlength="250">
+                </textarea>
+
+            </label>
+
+
+            <!-- ذخیره -->
+            <button id="saveNoteBtn"
+                    class="primary-btn full"
+                    type="button">
+
+                ذخیره مناسبت
+
+            </button>
+
+        </section>
+
+
+        <!-- پایین صفحه -->
+        <footer>
+
+            ساخته شده با HTML، CSS و JavaScript ❤️
+            تهیه کننده:مینااسماعیلی
+
+
+        </footer>
+
+    </main>
+
+
+    <!-- اتصال JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
